@@ -1,6 +1,7 @@
 package com.cg.bookstore.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,18 +17,19 @@ import javax.persistence.SequenceGenerator;
 public class Order {
 	
 	@Id
-	@SequenceGenerator(name="myorderlogic",initialValue=700,allocationSize=1)
+	@SequenceGenerator(name="myorderlogic",initialValue=10000,allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="myorderlogic")
 	private int orderId;
 	private String orderStatus;
-	private LocalDate orderDate;
-	private double totalPrice;
+	LocalDate orderDate;
+	private int totalPrice;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
-			name="Customer_order_Info",
+			name="Customer_Order_Info",
 			joinColumns=@JoinColumn(name="orderdetails"),
 			inverseJoinColumns=@JoinColumn(name="customerdetails"))
+	private List<Customer> customers;
 
 	public int getOrderId() {
 		return orderId;
@@ -50,24 +52,25 @@ public class Order {
 	public double getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(double totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate
-				+ ", totalPrice=" + totalPrice + "]";
+	
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((customers == null) ? 0 : customers.hashCode());
 		result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
 		result = prime * result + orderId;
 		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(totalPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + totalPrice;
 		return result;
 	}
 	@Override
@@ -77,6 +80,11 @@ public class Order {
 		if (!(obj instanceof Order))
 			return false;
 		Order other = (Order) obj;
+		if (customers == null) {
+			if (other.customers != null)
+				return false;
+		} else if (!customers.equals(other.customers))
+			return false;
 		if (orderDate == null) {
 			if (other.orderDate != null)
 				return false;
@@ -89,13 +97,14 @@ public class Order {
 				return false;
 		} else if (!orderStatus.equals(other.orderStatus))
 			return false;
-		if (Double.doubleToLongBits(totalPrice) != Double.doubleToLongBits(other.totalPrice))
+		if (totalPrice != other.totalPrice)
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate
+				+ ", totalPrice=" + totalPrice + ", customers=" + customers + "]";
+	}
 	
-	
-	
-	
-
 }

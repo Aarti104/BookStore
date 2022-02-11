@@ -18,8 +18,8 @@ import javax.persistence.SequenceGenerator;
 public class Customer {
 
 	@Id
-	@SequenceGenerator(name="mylogic",initialValue=1000,allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.AUTO,generator="mylogic")
+	@SequenceGenerator(name="mycustlogic",initialValue=1000,allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="mycustlogic")
 	private int customerId;
 	private String email;
 	private String customerName;
@@ -31,7 +31,7 @@ public class Customer {
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
-			name="Customer_order_Info",
+			name="Customer_Order_Info",
 			joinColumns=@JoinColumn(name="customerdetails"),
 			inverseJoinColumns=@JoinColumn(name="orderdetais"))
 	private List<Order> orders;
