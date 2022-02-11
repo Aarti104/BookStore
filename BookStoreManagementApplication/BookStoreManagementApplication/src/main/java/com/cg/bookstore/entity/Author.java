@@ -1,4 +1,5 @@
-package com.cg.entity;
+
+package com.cg.bookstore.entity;
 
 import java.util.Objects;
 
