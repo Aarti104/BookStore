@@ -1,42 +1,32 @@
 package com.cg.bookstore.entity;
 
-import java.io.Serializable;
+
 import java.time.LocalDate;
+import javax.persistence.Embeddable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+@Embeddable
+public class Order{
 
-
-
-@Entity
-@Table(name = "Order")
-@NamedQueries(@NamedQuery(name = "getAllOrder", query = "SELECT order FROM Order order"))
-public class Order implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name = "orderId")
 	private String orderId;
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="userId")
 	private String userId;
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="addressId")
 	private String addressId;
-	@Column(name = "orderStatus")
 	private String orderStatus;
-	@Column(name = "orderDate")
 	private LocalDate orderDate;
+	
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Order(String orderId, String userId, String addressId, String orderStatus, LocalDate orderDate) {
+		super();
+		this.orderId = orderId;
+		this.userId = userId;
+		this.addressId = addressId;
+		this.orderStatus = orderStatus;
+		this.orderDate = orderDate;
+	}
+	
 	public String getOrderId() {
 		return orderId;
 	}
