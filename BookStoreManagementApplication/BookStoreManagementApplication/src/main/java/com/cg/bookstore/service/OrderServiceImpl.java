@@ -1,12 +1,16 @@
-package com.cg.services;
+package com.cg.bookstore.service;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.entity.Order;
 import com.cg.repo.OrderRepo;
 import com.cg.repo.OrderRepoImpl;
 
+@Service
 public class OrderServiceImpl implements OrderService{
 	private OrderRepo repo;
 
