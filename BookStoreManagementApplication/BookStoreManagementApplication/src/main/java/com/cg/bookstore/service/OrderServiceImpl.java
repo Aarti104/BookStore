@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.entity.Order;
-import com.cg.repo.OrderRepo;
-import com.cg.repo.OrderRepoImpl;
+import com.cg.bookstore.entity.Order;
+import com.cg.bookstore.repository.OrderRepo;
+import com.cg.bookstore.repository.OrderRepoImpl;
 
 @Service
 public class OrderServiceImpl implements OrderService{
