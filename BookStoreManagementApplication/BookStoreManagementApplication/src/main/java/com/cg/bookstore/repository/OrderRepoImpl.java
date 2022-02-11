@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import com.cg.bookstore.entity.Address;
 import com.cg.bookstore.entity.Book;
