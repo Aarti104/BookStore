@@ -1,10 +1,12 @@
-package com.cg.services;
+package com.cg.bookstore.service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import com.cg.entity.Order;
 
+@Service
 public interface OrderService {
 	public Order addOrder(Order order);
 	public Order updateOrder(Order order);
