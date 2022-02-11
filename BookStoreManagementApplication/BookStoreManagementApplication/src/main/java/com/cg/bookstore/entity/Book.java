@@ -1,23 +1,12 @@
 package com.cg.bookstore.entity;
-import java.io.Serializable;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "books")
-@NamedQueries(@NamedQuery(name = "getAllBooks", query = "SELECT book FROM Book book"))
-public class Book implements Serializable {
+@Embeddable
+public class Book {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="book_id")
 	private Integer id;
