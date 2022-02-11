@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import com.cg.entity.Order;
+import com.cg.bookstore.entity.Order;
 
 @Service
 public interface OrderService {
