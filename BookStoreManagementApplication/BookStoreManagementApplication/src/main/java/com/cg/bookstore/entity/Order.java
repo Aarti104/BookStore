@@ -1,4 +1,4 @@
-package com.cg.entity;
+package com.cg.bookstore.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
