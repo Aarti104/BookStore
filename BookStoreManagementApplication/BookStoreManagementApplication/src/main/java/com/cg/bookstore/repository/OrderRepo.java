@@ -1,10 +1,12 @@
-package com.cg.repository;
+package com.cg.bookstore.repository;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import com.cg.entity.Order;
 
+@Repository
 public interface OrderRepo {
 	public Order addOrder(Order order);
 	public Order updateOrder(Order order);
