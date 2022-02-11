@@ -1,5 +1,5 @@
 package com.cg.bookstore.service;
 
-public class AuthorServiceImpl {
+public class AuthorServiceImpl implements IAuthorService{
 
 }
