@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import com.cg.entity.Order;
+import com.cg.bokstore.entity.Order;
 
 @Repository
 public interface OrderRepo {
