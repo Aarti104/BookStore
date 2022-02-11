@@ -1,4 +1,4 @@
-package com.cg.repository;
+package com.cg.bookstore.repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -7,16 +7,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import com.cg.entity.Address;
-import com.cg.entity.Book;
-import com.cg.entity.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.cg.bookstore.entity.Address;
+import com.cg.bookstore.entity.Book;
+import com.cg.bookstore.entity.Order;
 
 public class OrderRepoImpl implements OrderRepo {
-	private EntityManager entityManager;
-
-	public OrderRepoImpl() {
-		entityManager = JPAUtil.getEntityManager();
-	}
+	@Autowired
+	EntityManager entityManager;
 
 	@Override
 	public Order addOrder(Order order) {
