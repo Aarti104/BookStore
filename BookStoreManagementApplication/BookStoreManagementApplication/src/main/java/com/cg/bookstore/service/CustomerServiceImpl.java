@@ -38,10 +38,10 @@ public class CustomerServiceImpl implements ICustomerService
 		return custRepository.findById(customerId).get() ;
 	}
 
-	@Override
+	/*@Override
 	public boolean checkCustomerById(int customerId) {
 		return custRepository.existsById(customerId);
-	}
+	}*/
 
 	@Override
 	public List<Customer> getCustomerByCity(String city) {
@@ -52,7 +52,6 @@ public class CustomerServiceImpl implements ICustomerService
 	public List<Customer> getCustomerByState(String state) {
 		return custRepository.getCustomerByState(state);
 	}
-	/*
 	@Override
 	public List<Customer> getCustomerByCountry(String Country) {
 		// TODO Auto-generated method stub
@@ -65,6 +64,11 @@ public class CustomerServiceImpl implements ICustomerService
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Customer updateCustomer(Customer c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-*/
 }

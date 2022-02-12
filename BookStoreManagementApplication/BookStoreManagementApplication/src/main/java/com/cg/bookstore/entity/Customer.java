@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
 public class Customer {
 
 	@Id
-	@SequenceGenerator(name="mycustlogic",initialValue=1000,allocationSize=1)
+	@SequenceGenerator(name="mycustlogic",initialValue=120,allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="mycustlogic")
 	private int customerId;
 	private String email;
@@ -28,15 +28,21 @@ public class Customer {
 	private Address address;
 	private String mobileNumber;
 	private LocalDate registerOn;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(
-			name="Customer_Order_Info",
-			joinColumns=@JoinColumn(name="customerdetails"),
-			inverseJoinColumns=@JoinColumn(name="orderdetais"))
-	private List<Order> orders;
-	
-
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Customer(int customerId, String email, String customerName, String password, Address address,
+			String mobileNumber, LocalDate registerOn) {
+		super();
+		this.customerId = customerId;
+		this.email = email;
+		this.customerName = customerName;
+		this.password = password;
+		this.address = address;
+		this.mobileNumber = mobileNumber;
+		this.registerOn = registerOn;
+	}
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -79,13 +85,6 @@ public class Customer {
 	public void setRegisterOn(LocalDate registerOn) {
 		this.registerOn = registerOn;
 	}
-	
-	public List<Order> getOrders() {
-		return orders;
-	}
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,7 +94,6 @@ public class Customer {
 		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
-		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((registerOn == null) ? 0 : registerOn.hashCode());
 		return result;
@@ -129,11 +127,6 @@ public class Customer {
 				return false;
 		} else if (!mobileNumber.equals(other.mobileNumber))
 			return false;
-		if (orders == null) {
-			if (other.orders != null)
-				return false;
-		} else if (!orders.equals(other.orders))
-			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -150,8 +143,11 @@ public class Customer {
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", email=" + email + ", customerName=" + customerName
 				+ ", password=" + password + ", address=" + address + ", mobileNumber=" + mobileNumber + ", registerOn="
-				+ registerOn + ", orders=" + orders + "]";
+				+ registerOn + "]";
 	}
+	
+	
+	
 	
 	
 	

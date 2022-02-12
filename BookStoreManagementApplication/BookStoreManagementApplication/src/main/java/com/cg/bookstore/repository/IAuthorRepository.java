@@ -1,5 +1,10 @@
 package com.cg.bookstore.repository;
 
-public interface IAuthorRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.cg.bookstore.entity.Author;
+
+
+public interface IAuthorRepository extends CrudRepository<Author,Integer>,CustomAuthorRepository{
 
 }

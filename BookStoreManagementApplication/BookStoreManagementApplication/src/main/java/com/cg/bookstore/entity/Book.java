@@ -1,58 +1,126 @@
 package com.cg.bookstore.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Embeddable;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
-@Embeddable
+@Entity
 public class Book {
-
 	@Id
-	@Column(name="book_id")
-	private Integer id;
-	@Column(name="title")
-	private String title;
-	@Column(name="author")
-	private String author;
-	@Column(name="price")
-	private Double price;
-
-	public Integer getId() {
-		return id;
+	@SequenceGenerator(name="mybooklogic",initialValue=1000,allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="mybooklogic")
+	private int bookId;
+	private String bookname;
+	private String category;
+	private String isbn;
+	private int bookPrice;
+	private LocalDate publishDate;
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public Book(int bookId, String bookname, String category, String isbn, int bookPrice, LocalDate publishDate) {
+		super();
+		this.bookId = bookId;
+		this.bookname = bookname;
+		this.category = category;
+		this.isbn = isbn;
+		this.bookPrice = bookPrice;
+		this.publishDate = publishDate;
 	}
-
-	public String getTitle() {
-		return title;
+	public int getBookId() {
+		return bookId;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBookid(int bookId) {
+		this.bookId = bookId;
 	}
-
-	public String getAuthor() {
-		return author;
+	public String getBookname() {
+		return bookname;
 	}
-
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setBookname(String bookname) {
+		this.bookname = bookname;
 	}
-
-	public Double getPrice() {
-		return price;
+	public String getCategory() {
+		return category;
 	}
-
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public int getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(int bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	public LocalDate getPublishDate() {
+		return publishDate;
+	}
+	public void setPublishDate(LocalDate publishDate) {
+		this.publishDate = publishDate;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bookPrice;
+		result = prime * result + bookId;
+		result = prime * result + ((bookname == null) ? 0 : bookname.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + ((publishDate == null) ? 0 : publishDate.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Book))
+			return false;
+		Book other = (Book) obj;
+		if (bookPrice != other.bookPrice)
+			return false;
+		if (bookId != other.bookId)
+			return false;
+		if (bookname == null) {
+			if (other.bookname != null)
+				return false;
+		} else if (!bookname.equals(other.bookname))
+			return false;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		if (publishDate == null) {
+			if (other.publishDate != null)
+				return false;
+		} else if (!publishDate.equals(other.publishDate))
+			return false;
+		return true;
+	}
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author
-				+ ", price=" + price + "]";
+		return "Book [bookId=" + bookId + ", bookname=" + bookname + ", category=" + category + ", isbn=" + isbn
+				+ ", bookPrice=" + bookPrice + ", publishDate=" + publishDate + "]";
 	}
+	
+	
 
 }

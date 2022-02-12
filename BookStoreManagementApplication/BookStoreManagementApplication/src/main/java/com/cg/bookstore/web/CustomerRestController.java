@@ -46,10 +46,10 @@ public class CustomerRestController {
 		return custService.deleteCustomerById(customerId);
 	}
 	
-	@GetMapping("/customerid/{customerId}")
+	/*@GetMapping("/customerid/{customerId}")
 	public boolean checkStudent(@PathVariable int customerId) {
 		return custService.checkCustomerById(customerId);
-	}
+	}*/
 	
 	@GetMapping("/customercity")
 	public List<Customer> getCustomerCity(@RequestParam String city)
