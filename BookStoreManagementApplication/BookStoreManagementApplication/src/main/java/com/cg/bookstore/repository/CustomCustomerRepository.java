@@ -1,5 +1,6 @@
 package com.cg.bookstore.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -10,5 +11,6 @@ public interface CustomCustomerRepository {
 	
 	public List<Customer> getCustomerByCity(String city);
 	public List<Customer> getCustomerByState(String state);
-
+	public List<Customer> getCustomerByCountry(String country);
+	
 }

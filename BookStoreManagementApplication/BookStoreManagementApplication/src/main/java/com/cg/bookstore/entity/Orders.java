@@ -1,11 +1,16 @@
 package com.cg.bookstore.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -18,18 +23,29 @@ public class Orders {
 	private LocalDate orderDate;
 	private double totalPrice;
 	
+
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="Customer_Order_Info",
+			joinColumns=@JoinColumn(name="orderdetails"),
+			inverseJoinColumns=@JoinColumn(name="customerdetails"))
+	private List<Customer> customers;
+	
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(int orderId, boolean orderStatus, LocalDate orderDate, double totalPrice) {
+	
+	public Orders(int orderId, boolean orderStatus, LocalDate orderDate, double totalPrice, List<Customer> customers) {
 		super();
 		this.orderId = orderId;
 		this.orderStatus = orderStatus;
 		this.orderDate = orderDate;
 		this.totalPrice = totalPrice;
+		this.customers = customers;
 	}
+
 
 	public int getOrderId() {
 		return orderId;
@@ -62,6 +78,17 @@ public class Orders {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -97,11 +124,14 @@ public class Orders {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Orders [orderId=" + orderId + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate
-				+ ", totalPrice=" + totalPrice + "]";
+				+ ", totalPrice=" + totalPrice + ", customers=" + customers + "]";
 	}
+
+	
 	
 	
 }

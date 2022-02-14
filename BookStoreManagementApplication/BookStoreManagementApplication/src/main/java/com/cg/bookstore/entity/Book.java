@@ -1,13 +1,18 @@
 package com.cg.bookstore.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,11 +26,21 @@ public class Book {
 	private String isbn;
 	private int bookPrice;
 	private LocalDate publishDate;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="Customer_Book_Info",
+			joinColumns=@JoinColumn(name="bookdetails"),
+			inverseJoinColumns=@JoinColumn(name="customerdetails"))
+	private List<Customer> customers;
+	
 	public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Book(int bookId, String bookname, String category, String isbn, int bookPrice, LocalDate publishDate) {
+	
+	public Book(int bookId, String bookname, String category, String isbn, int bookPrice, LocalDate publishDate,
+			List<Customer> customers) {
 		super();
 		this.bookId = bookId;
 		this.bookname = bookname;
@@ -33,7 +48,9 @@ public class Book {
 		this.isbn = isbn;
 		this.bookPrice = bookPrice;
 		this.publishDate = publishDate;
+		this.customers = customers;
 	}
+
 	public int getBookId() {
 		return bookId;
 	}
@@ -69,6 +86,14 @@ public class Book {
 	}
 	public void setPublishDate(LocalDate publishDate) {
 		this.publishDate = publishDate;
+	}
+	
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
 	}
 	@Override
 	public int hashCode() {
@@ -115,11 +140,13 @@ public class Book {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", bookname=" + bookname + ", category=" + category + ", isbn=" + isbn
-				+ ", bookPrice=" + bookPrice + ", publishDate=" + publishDate + "]";
+				+ ", bookPrice=" + bookPrice + ", publishDate=" + publishDate + ", customers=" + customers + "]";
 	}
+	
 	
 	
 

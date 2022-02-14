@@ -46,11 +46,6 @@ public class CustomerRestController {
 		return custService.deleteCustomerById(customerId);
 	}
 	
-	/*@GetMapping("/customerid/{customerId}")
-	public boolean checkStudent(@PathVariable int customerId) {
-		return custService.checkCustomerById(customerId);
-	}*/
-	
 	@GetMapping("/customercity")
 	public List<Customer> getCustomerCity(@RequestParam String city)
 	{
@@ -60,6 +55,12 @@ public class CustomerRestController {
 	@GetMapping("/customerstate")
 	public List<Customer> getCustomerState(@RequestParam String state)
 	{
-		return custService.getCustomerByCity(state);
+		return custService.getCustomerByState(state);
+	}
+	
+	@GetMapping("/customercountry")
+	public List<Customer> getCustomerCountry(@RequestParam String country)
+	{
+		return custService.getCustomerByCountry(country);
 	}
 }

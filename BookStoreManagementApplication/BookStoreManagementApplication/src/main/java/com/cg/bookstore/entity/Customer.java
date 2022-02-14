@@ -12,28 +12,52 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Customer {
 
 	@Id
-	@SequenceGenerator(name="mycustlogic",initialValue=120,allocationSize=1)
+	@SequenceGenerator(name="mycustlogic",initialValue=1200,allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="mycustlogic")
 	private int customerId;
+	@Email(message = "Email should be valid")
 	private String email;
+	@NotNull(message="Customer Name Cannot be Left Blank")
 	private String customerName;
+	@NotNull(message="Password cannot be Left Blank")
 	private String password;
 	@Embedded
 	private Address address;
 	private String mobileNumber;
 	private LocalDate registerOn;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="Customer_Order_Info",
+			joinColumns=@JoinColumn(name="customerdetails"),
+			inverseJoinColumns=@JoinColumn(name="orderdetails"))
+	private List<Orders> order;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="Customer_Book_Info",
+			joinColumns=@JoinColumn(name="customerdetails"),
+			inverseJoinColumns=@JoinColumn(name="bookdetais"))
+	private List<Book> books;
+	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(int customerId, String email, String customerName, String password, Address address,
-			String mobileNumber, LocalDate registerOn) {
+	
+	public Customer(int customerId, @Email(message = "Email should be valid") String email,
+			@NotNull(message = "Customer Name Cannot be Left Blank") String customerName,
+			@NotNull(message = "Password cannot be Left Blank") String password, Address address, String mobileNumber,
+			LocalDate registerOn, List<Orders> order, List<Book> books) {
 		super();
 		this.customerId = customerId;
 		this.email = email;
@@ -42,7 +66,10 @@ public class Customer {
 		this.address = address;
 		this.mobileNumber = mobileNumber;
 		this.registerOn = registerOn;
+		this.order = order;
+		this.books = books;
 	}
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -85,19 +112,38 @@ public class Customer {
 	public void setRegisterOn(LocalDate registerOn) {
 		this.registerOn = registerOn;
 	}
+	public List<Orders> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Orders> order) {
+		this.order = order;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((books == null) ? 0 : books.hashCode());
 		result = prime * result + customerId;
 		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((registerOn == null) ? 0 : registerOn.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -109,6 +155,11 @@ public class Customer {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (books == null) {
+			if (other.books != null)
+				return false;
+		} else if (!books.equals(other.books))
 			return false;
 		if (customerId != other.customerId)
 			return false;
@@ -127,6 +178,11 @@ public class Customer {
 				return false;
 		} else if (!mobileNumber.equals(other.mobileNumber))
 			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -139,16 +195,14 @@ public class Customer {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", email=" + email + ", customerName=" + customerName
 				+ ", password=" + password + ", address=" + address + ", mobileNumber=" + mobileNumber + ", registerOn="
-				+ registerOn + "]";
+				+ registerOn + ", order=" + order + ", books=" + books + "]";
 	}
-	
-	
-	
-	
+
 	
 	
 	
