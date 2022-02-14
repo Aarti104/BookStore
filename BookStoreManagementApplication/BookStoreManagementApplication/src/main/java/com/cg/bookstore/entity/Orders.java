@@ -78,16 +78,6 @@ public class Orders {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
 
 
 	@Override
@@ -128,7 +118,7 @@ public class Orders {
 	@Override
 	public String toString() {
 		return "Orders [orderId=" + orderId + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate
-				+ ", totalPrice=" + totalPrice + ", customers=" + customers + "]";
+				+ ", totalPrice=" + totalPrice +  "]";
 	}
 
 	

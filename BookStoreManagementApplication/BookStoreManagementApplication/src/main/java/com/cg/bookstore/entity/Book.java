@@ -87,14 +87,6 @@ public class Book {
 	public void setPublishDate(LocalDate publishDate) {
 		this.publishDate = publishDate;
 	}
-	
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,7 +136,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", bookname=" + bookname + ", category=" + category + ", isbn=" + isbn
-				+ ", bookPrice=" + bookPrice + ", publishDate=" + publishDate + ", customers=" + customers + "]";
+				+ ", bookPrice=" + bookPrice + ", publishDate=" + publishDate + "]";
 	}
 	
 	

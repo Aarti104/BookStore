@@ -46,7 +46,7 @@ public class Customer {
 	@JoinTable(
 			name="Customer_Book_Info",
 			joinColumns=@JoinColumn(name="customerdetails"),
-			inverseJoinColumns=@JoinColumn(name="bookdetais"))
+			inverseJoinColumns=@JoinColumn(name="bookdetails"))
 	private List<Book> books;
 	
 	public Customer() {

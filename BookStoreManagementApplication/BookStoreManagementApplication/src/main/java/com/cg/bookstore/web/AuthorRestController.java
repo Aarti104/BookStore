@@ -28,7 +28,7 @@ public class AuthorRestController {
 		return true;
 	}
 	
-	@GetMapping("/Authors")
+	@GetMapping("/authors")
 	public List<Author> listAuthors()
 	{
 		return authorService.getAllAuthors();
